@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-for i in range(97,123):
-    if i == 101 or i == 113:
+for i in range(ord('a'), ord(123) + 1):
+    if i == ord('q') or i == ord('e'):
         i+=1
     else:
-        print("%c" %chr(i),end="")
+        print("%c" %chr(i), end="")
