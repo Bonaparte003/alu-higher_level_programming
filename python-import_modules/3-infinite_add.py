@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-if __name__ == "__main__":
+if __main__ == "__name__":
     from sys import argv
     total = 0
     a = len(argv)
