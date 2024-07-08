@@ -1,58 +1,52 @@
 #!/usr/bin/python3
-
-
 """Square module"""
 
 
 class Square:
-    """class def"""
+    """Class that defines a square"""
 
     def __init__(self, size=0, position=(0, 0)):
-
-        """init square"""
-
-        self.__size = size
-        self.__position = position
+        """Initialize a square"""
+        self.size = size  # This will call the size setter
+        self.position = position  # This will call the position setter
 
     @property
     def size(self):
-
-        """get the current size '@' decoration"""
+        """Get the current size"""
         return self.__size
 
     @size.setter
     def size(self, value):
-
-        """check for errors and raise em"""
-
-        if type(value) is not int:
+        """Set the size with error checks"""
+        if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        elif value < 0:
+        if value < 0:
             raise ValueError("size must be >= 0")
-        else:
-            self.__size = value
+        self.__size = value
 
     @property
     def position(self):
+        """Get the current position"""
         return self.__position
 
     @position.setter
     def position(self, value):
-        if type(self.__position) is not tuple:
+        """Set the position with error checks"""
+        if (not isinstance(value, tuple) or len(value) != 2 or
+                not all(isinstance(num, int) and num >= 0 for num in value)):
             raise TypeError("position must be a tuple of 2 positive integers")
-        else:
-            self.__position = value
+        self.__position = value
 
     def area(self):
-        """squares"""
-
+        """Return the area of the square"""
         return self.__size ** 2
 
     def my_print(self):
-        """function that prints '#'"""
-
-        for i in range(0, self.__size):
-            [print("#", end="") for j in range(self.__size)]
-            print("")
+        """Print the square with the character '#'"""
         if self.__size == 0:
             print("")
+            return
+
+        [print("") for _ in range(self.__position[1])]
+        for i in range(self.__size):
+            print(" " * self.__position[0] + "#" * self.__size)
