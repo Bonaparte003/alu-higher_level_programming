@@ -4,10 +4,31 @@
 
 class Rectangle:
     '''empty class'''
+
+    number_of_instances = 0
+    print_symbol = "#"
+
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        '''returns the biggesed rectangle'''
+        if type(rect_1) is not Rectangle:
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if type(rect_2) is not Rectangle:
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        if rect_1.area() >= rect_2.area():
+            return rect_1
+        return rect_2
+
     def __init__(self, width=0, height=0):
         '''initializing the instances in class'''
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1
+
+    def __del__(self):
+        '''prints string to be deleted'''
+        print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1
 
     @property
     def width(self):
@@ -54,3 +75,19 @@ class Rectangle:
             return 0
         else:
             return 2 * (w + h)
+
+    def __str__(self):
+        '''returns printable rect'''
+        strin = ""
+        w = self.__width
+        h = self.__height
+        s = str(self.print_symbol)
+        if w != 0 and h != 0:
+            strin += "\n".join(s * w for i in range(h))
+        return strin
+
+    def __repr__(self):
+        '''returns string'''
+        w = self.__width
+        h = self.__height
+        return ("Rectangle({:d}, {:d})".format(w, h))

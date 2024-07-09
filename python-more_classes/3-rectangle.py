@@ -54,3 +54,12 @@ class Rectangle:
             return 0
         else:
             return 2 * (w + h)
+
+    def __str__(self):
+        '''returns printable rect'''
+        strin = ""
+        w = self.__width
+        h = self.__height
+        if w != 0 and h != 0:
+            strin += "\n".join("#" * w for i in range(h))
+        return strin
