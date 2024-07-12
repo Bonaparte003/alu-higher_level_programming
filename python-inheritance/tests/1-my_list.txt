@@ -1,5 +1,5 @@
->>> a = __import__('1-my_list').MyList
->>> new = a()
+>>> MyList = __import__('1-my_list').MyList
+>>> new = MyList()
 >>> new
 []
 >>> new.print_sorted()
