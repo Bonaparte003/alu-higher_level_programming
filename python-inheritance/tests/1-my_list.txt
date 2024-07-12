@@ -11,5 +11,10 @@
 >>> new.append(0)
 >>> new
 [1, -1, 5, 4, 0]
+>>> id1 = id(new)
 >>> new.print_sorted()
 [-1, 0, 1, 4, 5]
+>>> id2 = id(new.print_sorted())
+[-1, 0, 1, 4, 5]
+>>> id1 == id2
+False
