@@ -1,20 +1,76 @@
->>> MyList = __import__('1-my_list').MyList
->>> new = MyList()
->>> new
-[]
->>> new.print_sorted()
-[]
->>> new.append(1)
->>> new.append(-1)
->>> new.append(5)
->>> new.append(4)
->>> new.append(0)
->>> new
-[1, -1, 5, 4, 0]
->>> id1 = id(new)
->>> id2 = id(new.print_sorted())
-[-1, 0, 1, 4, 5]
->>> id1 == id2
-False
->>> type(new[:])
-<class 'list'>
+Step1
+=======
+
+Importing
+
+       >>> MyList = __import__('1-my_list').MyList
+
+Create an object
+
+       >>> my_list = MyList()
+
+List functions
+==============
+
+Type
+
+	>>> type(my_list)
+	<class '1-my_list.MyList'>
+
+	>>> type(my_list) == MyList
+    	True
+
+Print
+
+	>>> print(my_list)
+	[]
+
+is Instance
+
+	>>> isinstance(my_list, MyList)
+	True
+
+	>>> isinstance(my_list, list)
+	True
+
+Subclass
+
+	>>> issubclass(MyList, list)
+    	True
+
+Step2
+=====
+
+	>>> l2 = MyList(my_list)
+	>>> l2 = [3, 7, 0, 1, 6]
+     	>>> l2.print_sorted()
+     	Traceback (most recent call last):
+     	AttributeError: 'list' object has no attribute 'print_sorted'
+
+Numbers
+=======
+
+	>>> my_list.print_sorted()
+	[]
+
+	>>> my_list.append(1)
+	>>> my_list.append(4)
+	>>> my_list.append(2)
+	>>> my_list.append(3)
+	>>> my_list.append(5)
+	>>> print(my_list)
+	[1, 4, 2, 3, 5]
+	>>> my_list.print_sorted()
+	[1, 2, 3, 4, 5]
+
+	>>> my_list
+	[1, 4, 2, 3, 5]
+
+Negative Numbers
+
+     	>>> my_list.append(-1)
+     	>>> my_list.append(-4)
+     	>>> my_list += [-8]
+     	>>> my_list.append(-5)
+     	>>> my_list.print_sorted()
+     	[-8, -5, -4, -1, 1, 2, 3, 4, 5]
