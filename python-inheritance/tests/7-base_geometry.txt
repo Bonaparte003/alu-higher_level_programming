@@ -1,0 +1,103 @@
+TestCases
+=======
+
+First, Import module and function
+
+        >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Use:
+
+	>>> Obj = BaseGeometry()
+
+validates functions if are there
+
+	>>> 'area' in dir(BaseGeometry)
+	True
+
+	>>> 'integer_validator' in dir(BaseGeometry)
+	True
+
+Validates if instances have access to the attributes as their class
+
+	 >>> dir(Obj) == dir(BaseGeometry)
+    	 True
+
+validates if the area function raises the Exception
+
+	 >>> Obj.area()
+	 Traceback (most recent call last):
+  	 ...
+	 Exception: area() is not implemented
+
+Validates if integer_validator raises errors incase of negative and zero
+Validates if the age is an integer
+
+	 >>> Obj.integer_validator("name", -10)
+	 Traceback (most recent call last):
+  	 ...
+	 ValueError: name must be greater than 0
+
+	 >>> Obj.integer_validator("name", 0)
+	 Traceback (most recent call last):
+	 ...
+	 ValueError: name must be greater than 0
+
+	 >>> Obj.integer_validator("name", 4)
+
+	 >>> Obj.integer_validator("name", "last")
+	 Traceback (most recent call last):
+  	 ...
+	 TypeError: name must be an integer
+
+Boolean type
+
+	 >>> Obj.integer_validator("name", True)
+    	 Traceback (most recent call last):
+    	 ...
+    	 TypeError: name must be an integer
+
+List type
+
+	 >>> Obj.integer_validator("Test", [3])
+    	 Traceback (most recent call last):
+    	 ...
+    	 TypeError: Test must be an integer
+
+Tuple type
+
+         >>> Obj.integer_validator("Test", (4, ))
+    	 Traceback (most recent call last):
+    	 ...
+    	 TypeError: Test must be an integer
+
+Set type
+
+	 >>> Obj.integer_validator("Test", {3, 4})
+    	 Traceback (most recent call last):
+    	 ...
+    	 TypeError: Test must be an integer
+
+Dict type
+
+         >>> Obj.integer_validator("Test", {1: 2})
+    	 Traceback (most recent call last):
+    	 ...
+    	 TypeError: Test must be an integer
+
+with None
+
+         >>> Obj.integer_validator("Test", None)
+    	 Traceback (most recent call last):
+    	 ...
+    	 TypeError: Test must be an integer
+
+	     >>> Obj.integer_validator()
+	     Traceback (most recent call last):
+	     ...
+	     TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+	     >>> Obj.integer_validator(1)
+	     Traceback (most recent call last):
+ 	     ...
+	     TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+
