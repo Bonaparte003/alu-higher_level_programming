@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import os
 # function that appends and returns the len(text)
 
 

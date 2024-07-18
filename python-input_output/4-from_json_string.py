@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import os
 import json
 # function that returns datastructures in json
 

@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import os
 import json
 # funciton that creates an Object form JSON FILE
 

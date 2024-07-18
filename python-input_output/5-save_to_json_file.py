@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import os
 import json
 # function that writes an Object to text file
 # in json form

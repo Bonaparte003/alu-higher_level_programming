@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import os
 # function that writes to file and returns the len(text)
 
 

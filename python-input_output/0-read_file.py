@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import os
 # Function that reads the UTF8 and prints to stdout
 
 
