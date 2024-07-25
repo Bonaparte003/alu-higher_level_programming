@@ -1,3 +1,3 @@
 #!/bin/bash
 #send updates the header
-curl -s  "$1" "X-HolbertonSchool-User-Id: 98"
+curl -sG "$1" -H "X-School-User-Id: 98"
