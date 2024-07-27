@@ -1,6 +1,12 @@
 #!/usr/bin/python3
-# Write a Python script that fetches https://intranet.hbtn.io/status
+"""
+A python script that fetches data from a url
+displays the type(binary), raw_content and
+decoded content in utf-8
+"""
+
 import urllib.request
+
 
 with urllib.request.urlopen('https://intranet.hbtn.io/status') as response:
     html = response.read()
