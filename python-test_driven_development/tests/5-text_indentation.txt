@@ -19,3 +19,5 @@ TypeError: text must be a string
 
 >>> text_indentation("Holberton. School")
 Holberton.
+<BLANKLINE>
+School
