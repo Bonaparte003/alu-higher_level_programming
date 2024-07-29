@@ -1,0 +1,25 @@
+>>> func = __import__('0-add_integer').add_integer
+>>> func(1, 2)
+3
+>>> func(100, -2)
+98
+>>> func(2)
+100
+>>> func(0)
+98
+>>> func("hello")
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+>>> func(0, "hi")
+Traceback (most recent call last):
+    ...
+TypeError: b must be an integer
+>>> func("Hello", "Sir")
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+>>> func(-1, 100)
+99
+>>> func (-1, -9)
+-10
