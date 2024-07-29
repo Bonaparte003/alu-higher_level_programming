@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-takes a URL and sends a request to the url
-handles errors
+In takes a url, performs a request
+and handles errors if any
 """
 
 import urllib.request
@@ -9,11 +9,11 @@ import urllib.error
 import sys
 
 if __name__ == '__main__':
-    """"Documented"""
+    """"STARTING THE PROCESS"""
     url = sys.argv[1]
-    reqq = urllib.request.Request(url)
+    re = urllib.request.Request(url)
     try:
-        with urllib.request.urlopen(reqq) as response:
+        with urllib.request.urlopen(re) as response:
             content = response.read()
             print("{}".format(content.decode("utf-8")))
     except urllib.error.HTTPError as e:
