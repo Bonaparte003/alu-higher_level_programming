@@ -1,13 +1,14 @@
 #!/usr/bin/python3
-"""sends a request"""
-import requests
+"""send to a given url and displays the response body"""
 import sys
+import requests
+
 
 if __name__ == "__main__":
     url = sys.argv[1]
+
     req = requests.get(url)
-    code = req.code
-    if code >= 400:
-        print(f"Error code: {code}")
+    if req.status_code >= 400:
+        print("Error code: {}".format(req.status_code))
     else:
         print(req.text)
