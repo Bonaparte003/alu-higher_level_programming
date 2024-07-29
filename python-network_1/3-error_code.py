@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3i
 """
 takes URL sends a request to the URL
 Displays the body of the response
@@ -15,4 +15,6 @@ if __name__ == "__main__":
         with urllib.request.urlopen(url) as f:
             print(f.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
-        print(f"{e}")
+        print("Error code: {}".format(e.code))
+    except urllib.error.URLError as n:
+        print(n.reason)
