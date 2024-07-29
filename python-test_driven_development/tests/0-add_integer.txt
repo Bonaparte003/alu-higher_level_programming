@@ -1,25 +1,39 @@
->>> func = __import__('0-add_integer').add_integer
->>> func(1, 2)
-3
->>> func(100, -2)
-98
->>> func(2)
-100
->>> func(0)
-98
->>> func("hello")
+Import `add_integer`
+
+>>> add_integer = __import__('0-add_integer').add_integer
+
+>>> add_integer(4, 5)
+9
+
+>>> add_integer(4, -5)
+-1
+
+>>> add_integer(4)
+102
+
+>>> add_integer('a')
 Traceback (most recent call last):
-    ...
 TypeError: a must be an integer
->>> func(0, "hi")
+
+>>> add_integer(2, 'b')
 Traceback (most recent call last):
-    ...
 TypeError: b must be an integer
->>> func("Hello", "Sir")
+
+>>> add_integer(1, '2')
 Traceback (most recent call last):
-    ...
-TypeError: a must be an integer
->>> func(-1, 100)
+TypeError: b must be an integer
+
+>>> add_integer(float('nan'))
+Traceback (most recent call last):
+ValueError: cannot convert float NaN to integer
+
+>>> add_integer(1.55)
 99
->>> func (-1, -9)
--10
+
+>>> add_integer(2 ** 10000* .1)
+Traceback (most recent call last):
+OverflowError: int too large to convert to float
+
+>>> add_integer(float('inf'))
+Traceback (most recent call last):
+OverflowError: cannot convert float infinity to integer
