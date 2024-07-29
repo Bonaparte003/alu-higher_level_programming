@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-# script that intakes URL and email for CLI
-# sends a POST request to the passed URL
+"""
+script that intakes URL and email for CLI
+sends a POST request to the passed URL
+"""
 import sys
 import urllib.request
 import urllib.parse
