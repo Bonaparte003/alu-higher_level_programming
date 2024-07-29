@@ -1,14 +1,10 @@
 #!/usr/bin/python3
-"""
-sends a request to url and
-displays the value of the
-X-Requests-Id
-"""
+"""Displays the header"""
 
 import sys
 import requests
 
 if __name__ == "__main__":
     url = sys.argv[1]
-    res = requests.get(url)
-    print("{}".format(res.headers.get("X-Requests-Id")))
+    req = requests.get(url)
+    print(req.headers.get("X-Request-Id"))
