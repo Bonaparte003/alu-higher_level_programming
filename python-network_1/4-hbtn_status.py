@@ -1,15 +1,10 @@
 #!/usr/bin/python3
-"""
-uses the request package to handle
-request
-"""
-
+"""Fetches url"""
 import requests
 
 
 if __name__ == "__main__":
-    """let's go!"""
-    response = requests.get("https://alu-intranet.hbtn.io/status")
+    req = requests.get("https://alx-intranet.hbtn.io/status")
     print("Body response:")
-    print("\t- {}".format(type(response.text)))
-    print("\t- {}".format(response.text))
+    print("\t- type: {}".format(type(req.text)))
+    print("\t- content: {}".format((req.text)))
