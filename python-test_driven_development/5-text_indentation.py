@@ -1,22 +1,15 @@
 #!/usr/bin/python3
+""""text_indentation"""
 
 
 def text_indentation(text):
-    '''
-    splits text basing on "?",":","."
-    '''
-    flag = 0
+    """ text indentation
+    """
     if type(text) is not str:
         raise TypeError("text must be a string")
-    non_space = text.strip()
-    length = len(non_space)
-    for i in range(length):
-        if non_space[i] in ".?:":
-            print(non_space[i])
-            print()
-            flag = 1
-        else:
-            if flag == 1 and non_space[i] == " ":
-                continue
-            print(non_space[i], end="")
-            flag = 0
+
+    for delim in ".:?":
+        text = (delim + "\n\n").join(
+            [line.strip(" ") for line in text.split(delim)])
+
+    print("{}".format(text), end="")
