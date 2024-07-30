@@ -13,7 +13,7 @@ class Rectangle(Base):
         self.__x = x
         self.__y = y
         self.__id = id
-    
+
     @property
     def width(self):
         """ Getter for width """
@@ -73,7 +73,7 @@ class Rectangle(Base):
             raise ValueError("y must be >= 0")
         else:
             self.__y = value
-    
+
     def area(self):
         """ Returns the area of the rectangle """
         return self.__width * self.__height
@@ -87,7 +87,13 @@ class Rectangle(Base):
 
     def __str__(self):
         """returns the string representation of the Rectangle instance"""
-        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.__x, self.__y, self.__width, self.__height)
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+            self.id,
+            self.__x,
+            self.__y,
+            self.__width,
+            self.__height
+            )
 
     def update(self, *args, **kwargs):
         """ assigns an argument to each attribute """
@@ -115,4 +121,3 @@ class Rectangle(Base):
                     self.__x = value
                 elif key == "y":
                     self.__y = value
-

@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Base class for all models """
 
+
 class Base:
     """ Base class for all models """
     __nb_objects = 0
