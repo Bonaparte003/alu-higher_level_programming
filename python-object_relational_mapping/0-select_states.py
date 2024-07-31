@@ -3,7 +3,7 @@
 import sys
 import MySQLdb
 
-
+"""Starting by connecting to the database"""
 database = MySQLdb.connect(
         user=sys.argv[1],
         passwd=sys.argv[2],
