@@ -8,6 +8,7 @@ from model_city import City
 
 
 if __name__ == "__main__":
+    """connection"""
     creator = create_engine(
         "mysql+mysqldb://{}:{}@localhost/{}".format(
             sys.argv[1], sys.argv[2], sys.argv[3]),
