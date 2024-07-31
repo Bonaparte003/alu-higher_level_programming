@@ -13,7 +13,8 @@ if __name__ == "__main__":
             )
 
     cr = db.cursor()
-    cr.execute('SELECT * FROM states')
+    cr.execute("""SELECT * FROM states WHERE name
+            LIKE BINARY 'N%' ORDER BY states.id""")
     tables = cr.fetchall()
     for i in tables:
         print(i)
