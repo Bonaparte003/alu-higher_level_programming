@@ -7,10 +7,13 @@ import sys
 
 def states():
     """gives all the states"""
-    database = MySQLdb.connect(user=sys.argv[1],
-                         passwd=sys.argv[2],
-                         db=sys.argv[3]
-                         )
+    database = MySQLdb.connect(
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3],
+        host="localhost",
+        port=3306
+        )
     cursor = database.cursor()
 
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
