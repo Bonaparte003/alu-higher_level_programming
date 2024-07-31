@@ -13,8 +13,10 @@ if __name__ == "__main__":
             db=sys.argv[3],
             port=3306)
     cr = db.cursor()
-    cr.execute("SELECT * FROM states WHERE name LIKE BINARY '{}'"
-                .format(sys.argv[4]))
+    cr.execute(
+            "SELECT cities.id, cities.name, states.name FROM "
+            "cities INNER JOIN states ON states.id = cities.state_id"
+            )
     tables = cr.fetchall()
     for r in tables:
         print(r)
