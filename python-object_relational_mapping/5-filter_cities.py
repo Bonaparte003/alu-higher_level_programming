@@ -5,6 +5,7 @@ import sys
 
 
 if __name__ == "__main__":
+    """starting with the connection"""
     db = MySQLdb.connect(
             host="localhost",
             user=sys.argv[1],
