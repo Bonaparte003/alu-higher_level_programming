@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-1.creation of Base class with:
+1. Creation of Base class with:
     a) private class attribute "__nb_objects = 0"
     b) a class constructor "def __init__(self, id=None):"
 """
@@ -11,11 +11,11 @@ import turtle
 
 
 class Base:
-    """creation of base class"""
+    """Creation of base class"""
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """class constructor"""
+        """Class constructor"""
         if id is not None:
             self.id = id
         else:
@@ -58,8 +58,8 @@ class Base:
             dummy_instance = cls(1)
         else:
             raise NotImplementedError(
-                    f"create method not implemented forclass {cls.__name__}"
-                    )
+                f"create method not implemented for class {cls.__name__}"
+            )
         dummy_instance.update(**dictionary)
         return dummy_instance
 
@@ -71,6 +71,43 @@ class Base:
             with open(filename, "r") as file:
                 json_string = file.read()
                 list_dicts = cls.from_json_string(json_string)
+                return [cls.create(**d) for d in list_dicts]
+        except FileNotFoundError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Writes the CSV string representation of list_objs to a file"""
+        filename = cls.__name__ + ".csv"
+        with open(filename, "w", newline='') as file:
+            if list_objs is None:
+                file.write("")
+            else:
+                writer = csv.writer(file)
+                if cls.__name__ == "Rectangle":
+                    writer.writerow(["id", "width", "height", "x", "y"])
+                    for obj in list_objs:
+                        writer.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+                elif cls.__name__ == "Square":
+                    writer.writerow(["id", "size", "x", "y"])
+                    for obj in list_objs:
+                        writer.writerow([obj.id, obj.size, obj.x, obj.y])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Returns a list of instances from a CSV file"""
+        filename = cls.__name__ + ".csv"
+        try:
+            with open(filename, "r", newline='') as file:
+                reader = csv.DictReader(file)
+                list_dicts = []
+                for row in reader:
+                    if cls.__name__ == "Rectangle":
+                        row = {k: int(v) for k, v in row.items()}
+                    elif cls.__name__ == "Square":
+                        row = {k: int(v) for k, v in row.items() if k != "size"}
+                        row["size"] = int(row["size"])
+                    list_dicts.append(row)
                 return [cls.create(**d) for d in list_dicts]
         except FileNotFoundError:
             return []
