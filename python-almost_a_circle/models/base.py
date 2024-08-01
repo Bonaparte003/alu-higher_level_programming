@@ -87,7 +87,9 @@ class Base:
                 if cls.__name__ == "Rectangle":
                     writer.writerow(["id", "width", "height", "x", "y"])
                     for obj in list_objs:
-                        writer.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+                        writer.writerow([
+                            obj.id, obj.width, obj.height, obj.x, obj.y
+                        ])
                 elif cls.__name__ == "Square":
                     writer.writerow(["id", "size", "x", "y"])
                     for obj in list_objs:
@@ -105,7 +107,9 @@ class Base:
                     if cls.__name__ == "Rectangle":
                         row = {k: int(v) for k, v in row.items()}
                     elif cls.__name__ == "Square":
-                        row = {k: int(v) for k, v in row.items() if k != "size"}
+                        row = {
+                            k: int(v) for k, v in row.items() if k != "size"
+                        }
                         row["size"] = int(row["size"])
                     list_dicts.append(row)
                 return [cls.create(**d) for d in list_dicts]
