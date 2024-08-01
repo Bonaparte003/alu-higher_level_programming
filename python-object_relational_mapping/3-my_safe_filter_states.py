@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-"""lists all states in database"""
+"""displays all states in database"""
 import MySQLdb
 import sys
 
 
 if __name__ == "__main__":
+    """connecting"""
     db = MySQLdb.connect(
             host='localhost',
             user=sys.argv[1],

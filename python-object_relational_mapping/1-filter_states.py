@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-"""lists all states"""
+"""displays all the states"""
 import MySQLdb
 import sys
 
 if __name__ == "__main__":
+    """starting the connection"""
     db = MySQLdb.connect(
             host="localhost",
             user=sys.argv[1],
