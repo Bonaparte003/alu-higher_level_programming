@@ -50,13 +50,11 @@ class Square(Rectangle):
 
     def to_dictionary(self):
         """method that returns the dictionary represantation of Rect"""
-        return {
-                "id": self.id,
-                "x": self.x,
-                "size": self.size,
-                "y": self.y
-                }
-
-    def __str__(self):
-        """prints to stdout"""
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+        attributes_list = ["id","size", "x", "y"]
+        dictionary_representation = {}
+        for key in attributes_list:
+            if key == "size":
+                dictionary_representation[key] = getattr(self, 'width')
+        else:
+            dictionary_representation[key] = getattr(self, key)
+        return dictionary_representation

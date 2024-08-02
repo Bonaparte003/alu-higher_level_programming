@@ -110,7 +110,7 @@ class Base:
                         row = {
                             k: int(v) for k, v in row.items() if k != "size"
                         }
-                        row["size"] = int(row["size"])
+                        row["size"] = int(row.get("size", 0))
                     list_dicts.append(row)
                 return [cls.create(**d) for d in list_dicts]
         except FileNotFoundError:
