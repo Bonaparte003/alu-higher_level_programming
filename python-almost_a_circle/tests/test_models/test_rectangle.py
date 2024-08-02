@@ -7,7 +7,6 @@ from unittest.mock import patch
 from models.rectangle import Rectangle
 from models.base import Base
 
-
 class TestRectangleMethods(unittest.TestCase):
 
     def setUp(self):
@@ -235,167 +234,37 @@ class TestRectangleMethods(unittest.TestCase):
             print(r1)
             self.assertEqual(str_out.getvalue(), res)
 
-        r1.update(10, 10, 10, 10, 10)
-        res = "[Rectangle] (10) 10/10 - 10/10\n"
+        r2 = Rectangle(5, 7)
+        res = "[Rectangle] (2) 0/0 - 5/7\n"
+        with patch('sys.stdout', new=StringIO()) as str_out:
+            print(r2)
+            self.assertEqual(str_out.getvalue(), res)
+
+        r2.update(**r1.to_dictionary())
+        self.assertEqual(False, r1 == r2)
+
+    def test_to_dictionary_3(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r2 = Rectangle(1, 1)
+        res = "[Rectangle] (1) 10/10 - 10/10\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(r1)
             self.assertEqual(str_out.getvalue(), res)
 
-        r1_dictionary = r1.to_dictionary()
-        self.assertEqual(r1.id, 10)
-        self.assertEqual(r1.width, 10)
-        self.assertEqual(r1.height, 10)
-        self.assertEqual(r1.x, 10)
-        self.assertEqual(r1.y, 10)
-
-        r2 = Rectangle(1, 1)
         res = "[Rectangle] (2) 0/0 - 1/1\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(r2)
             self.assertEqual(str_out.getvalue(), res)
 
-        r2.update(**r1_dictionary)
-        res = "[Rectangle] (10) 10/10 - 10/10\n"
+        r2.update(**r1.to_dictionary())
+        res = "[Rectangle] (1) 10/10 - 10/10\n"
+        with patch('sys.stdout', new=StringIO()) as str_out:
+            print(r1)
+            self.assertEqual(str_out.getvalue(), res)
+
+        res = "[Rectangle] (2) 10/10 - 10/10\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(r2)
             self.assertEqual(str_out.getvalue(), res)
 
-        self.assertEqual(r2.id, 10)
-        self.assertEqual(r2.width, 10)
-        self.assertEqual(r2.height, 10)
-        self.assertEqual(r2.x, 10)
-        self.assertEqual(r2.y, 10)
-
-    def test_update_args(self):
-        r1 = Rectangle(10, 10, 10, 10)
-        res = "[Rectangle] (1) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.update(89)
-        res = "[Rectangle] (89) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_update_args_2(self):
-        r1 = Rectangle(10, 10, 10, 10)
-        res = "[Rectangle] (1) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.update(89, 2)
-        res = "[Rectangle] (89) 10/10 - 2/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_update_args_3(self):
-        r1 = Rectangle(10, 10, 10, 10)
-        res = "[Rectangle] (1) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.update(89, 2, 3)
-        res = "[Rectangle] (89) 10/10 - 2/3\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_update_args_4(self):
-        r1 = Rectangle(10, 10, 10, 10)
-        res = "[Rectangle] (1) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.update(89, 2, 3, 4)
-        res = "[Rectangle] (89) 4/10 - 2/3\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_update_args_5(self):
-        r1 = Rectangle(10, 10, 10, 10)
-        res = "[Rectangle] (1) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.update(89, 2, 3, 4, 5)
-        res = "[Rectangle] (89) 4/5 - 2/3\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_update_kwargs(self):
-        r1 = Rectangle(10, 10, 10, 10)
-        res = "[Rectangle] (1) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.update(id=89)
-        res = "[Rectangle] (89) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_update_kwargs_2(self):
-        r1 = Rectangle(10, 10, 10, 10)
-        res = "[Rectangle] (1) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.update(id=89, width=2)
-        res = "[Rectangle] (89) 10/10 - 2/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_update_kwargs_3(self):
-        r1 = Rectangle(10, 10, 10, 10)
-        res = "[Rectangle] (1) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.update(id=89, width=2, height=3)
-        res = "[Rectangle] (89) 10/10 - 2/3\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_update_kwargs_4(self):
-        r1 = Rectangle(10, 10, 10, 10)
-        res = "[Rectangle] (1) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.update(id=89, width=2, height=3, x=4)
-        res = "[Rectangle] (89) 4/10 - 2/3\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_update_kwargs_5(self):
-        r1 = Rectangle(10, 10, 10, 10)
-        res = "[Rectangle] (1) 10/10 - 10/10\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.update(id=89, width=2, height=3, x=4, y=5)
-        res = "[Rectangle] (89) 4/5 - 2/3\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
-
-
-if __name__ == "__main__":
-    unittest.main()
+        self.assertEqual(False, r1 == r2)
