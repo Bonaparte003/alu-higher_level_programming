@@ -1,60 +1,73 @@
 #!/usr/bin/python3
+""" Module that contains class Square,
+inheritance of class Rectangle
 """
-Create class Square that inherits from Rectangle:
-    1.with private attributes each with public getters
-"""
-
-
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """inheritance"""
+    """ Class Rectangle """
+
     def __init__(self, size, x=0, y=0, id=None):
-        """constructor"""
+        """ Initializes instances """
         super().__init__(size, size, x, y, id)
+
+    def __str__(self):
+        """ str special method """
+        str_square = "[Square] "
+        str_id = "({}) ".format(self.id)
+        str_xy = "{}/{} - ".format(self.x, self.y)
+        str_wh = "{}/{}".format(self.width, self.height)
+
+        return str_square + str_id + str_xy + str_wh
 
     @property
     def size(self):
+        """ Getter size """
         return self.width
 
     @size.setter
     def size(self, value):
+        """ Setter size """
         self.width = value
         self.height = value
 
+    def __str__(self):
+        """ str special method """
+        str_rectangle = "[Square] "
+        str_id = "({}) ".format(self.id)
+        str_xy = "{}/{} - ".format(self.x, self.y)
+        str_size = "{}".format(self.size)
+
+        return str_rectangle + str_id + str_xy + str_size
+
     def update(self, *args, **kwargs):
-        """the method used to override the __str__ method"""
-        if args and len(args) != 0:
-            i = 0
-            for k in args:
-                if i == 0 and k is not None:
-                    self.id = k
-                elif i == 1:
-                    self.size = k
-                elif i == 2:
-                    self.x = k
-                elif i == 3:
-                    self.y = k
-                i += 1
-        elif kwargs and len(kwargs) != 0:
-            for m, n in kwargs.items():
-                if m == "id" and n is not None:
-                    self.id = n
-                elif m == "size":
-                    self.size = n
-                elif m == "x":
-                    self.x = n
-                elif m == "y":
-                    self.y = n
+        """ update method """
+        if args is not None and len(args) != 0:
+            list_atr = ['id', 'size', 'x', 'y']
+            for i in range(len(args)):
+                if list_atr[i] == 'size':
+                    setattr(self, 'width', args[i])
+                    setattr(self, 'height', args[i])
+                else:
+                    setattr(self, list_atr[i], args[i])
+        else:
+            for key, value in kwargs.items():
+                if key == 'size':
+                    setattr(self, 'width', value)
+                    setattr(self, 'height', value)
+                else:
+                    setattr(self, key, value)
 
     def to_dictionary(self):
-        """method that returns the dictionary represantation of Rect"""
-        attributes_list = ["id","size", "x", "y"]
-        dictionary_representation = {}
-        for key in attributes_list:
-            if key == "size":
-                dictionary_representation[key] = getattr(self, 'width')
-        else:
-            dictionary_representation[key] = getattr(self, key)
-        return dictionary_representation
+        """ Returns a dictionary with attributes """
+        list_atr = ['id', 'size', 'x', 'y']
+        dict_res = {}
+
+        for key in list_atr:
+            if key == 'size':
+                dict_res[key] = getattr(self, 'width')
+            else:
+                dict_res[key] = getattr(self, key)
+
+        return dict_res
